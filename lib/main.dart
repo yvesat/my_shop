@@ -26,11 +26,11 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'MyShop',
         theme: ThemeData(
-          primaryColor: Color(0xff189AB4),
-          scaffoldBackgroundColor: Color(0xffe8f7fa),
+          primaryColor: const Color(0xff189AB4),
+          scaffoldBackgroundColor: const Color(0xffe8f7fa),
           colorScheme: ColorScheme.fromSwatch().copyWith(
-            primary: Color(0xff189AB4),
-            secondary: Color(0xff75E6DA),
+            primary: const Color(0xff189AB4),
+            secondary: const Color(0xff75E6DA),
           ),
           fontFamily: 'Roboto',
         ),
@@ -52,9 +52,9 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('MyShop'),
+        title: const Text('MyShop'),
       ),
-      body: Center(
+      body: const Center(
         child: Text('Let\'s build a shop!'),
       ),
     );

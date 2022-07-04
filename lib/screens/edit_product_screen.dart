@@ -14,6 +14,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
   final _imageUrlController = TextEditingController();
   final _form = GlobalKey<FormState>();
   final _imageUrlFocusNode = FocusNode();
+  final String _missingImageUrl = 'https://cdn.pixabay.com/photo/2017/02/16/13/42/box-2071537_960_720.png';
 
   var _EditedProduct = Product(
     id: null,
@@ -100,7 +101,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
     return Scaffold(
       appBar: AppBar(title: Text('Edit Product')),
       body: _isLoading
-          ? Center(
+          ? const Center(
               child: CircularProgressIndicator(),
             )
           : Padding(
@@ -112,7 +113,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
                     children: <Widget>[
                       TextFormField(
                         initialValue: _initValues['title'],
-                        decoration: InputDecoration(labelText: 'Title'),
+                        decoration: const InputDecoration(labelText: 'Title'),
                         textInputAction: TextInputAction.next,
                         validator: (String? value) {
                           if (value!.isEmpty) {
@@ -133,7 +134,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
                       ),
                       TextFormField(
                         initialValue: _initValues['price'],
-                        decoration: InputDecoration(labelText: 'Price'),
+                        decoration: const InputDecoration(labelText: 'Price'),
                         textInputAction: TextInputAction.next,
                         keyboardType: TextInputType.number,
                         validator: (String? value) {
@@ -163,7 +164,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
                       ),
                       TextFormField(
                         initialValue: _initValues['description'],
-                        decoration: InputDecoration(labelText: 'Description'),
+                        decoration: const InputDecoration(labelText: 'Description'),
                         maxLines: 3,
                         keyboardType: TextInputType.multiline,
                         validator: (String? value) {
@@ -200,7 +201,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
                               ),
                             ),
                             child: _imageUrlController.text.isEmpty
-                                ? Center(child: Text('Enter a URL'))
+                                ? const Center(child: Text('Enter a URL'))
                                 : FittedBox(
                                     child: Image.network(
                                     _imageUrlController.text,
@@ -209,24 +210,11 @@ class _EditProductScreenState extends State<EditProductScreen> {
                           ),
                           Expanded(
                             child: TextFormField(
-                              decoration: InputDecoration(labelText: 'Image URL'),
+                              decoration: const InputDecoration(labelText: 'Image URL'),
                               keyboardType: TextInputType.url,
                               textInputAction: TextInputAction.done,
                               controller: _imageUrlController,
                               focusNode: _imageUrlFocusNode,
-                              validator: (String? value) {
-                                if (value!.isEmpty) {
-                                  return 'Please provide a image URL for your product';
-                                }
-
-                                if (!value.startsWith('http') && !value.startsWith('https')) {
-                                  return 'Please enter a valid URL';
-                                }
-                                if (!value.endsWith('.png') && !value.endsWith('.jpg') && !value.endsWith('.jpeg')) {
-                                  return 'The supported image formats are .png, .jpg and .jpeg';
-                                }
-                                return null;
-                              },
                               onSaved: (value) {
                                 _EditedProduct = Product(
                                   id: _EditedProduct.id,
@@ -234,7 +222,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
                                   title: _EditedProduct.title,
                                   description: _EditedProduct.description,
                                   price: _EditedProduct.price,
-                                  imageUrl: value!,
+                                  imageUrl: value!.isEmpty ? _missingImageUrl : value,
                                 );
                               },
                               onEditingComplete: () {
@@ -247,11 +235,11 @@ class _EditProductScreenState extends State<EditProductScreen> {
                       Container(
                         width: double.infinity,
                         height: 60,
-                        margin: EdgeInsets.all(16),
+                        margin: const EdgeInsets.all(16),
                         child: InkWell(
                           child: Card(
                             color: Theme.of(context).primaryColor,
-                            child: Center(
+                            child: const Center(
                               child: Text(
                                 'SAVE PRODUCT',
                                 style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),

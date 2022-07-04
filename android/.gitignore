@@ -11,3 +11,17 @@ GeneratedPluginRegistrant.java
 key.properties
 **/*.keystore
 **/*.jks
+
+.dart_tool/
+.packages # Can be removed after Dart 2.17
+build/
+pubspec.lock  # Except for application packages
+doc/api/
+# IntelliJ
+*.iml
+*.ipr
+*.iws
+.idea/
+
+# Mac
+.DS_Store

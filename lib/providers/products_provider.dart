@@ -48,7 +48,7 @@ class ProductsProvider with ChangeNotifier {
   }
 
   Future<void> addProduct(Product product) async {
-    final url = Uri.parse('https://myshop-f4884-default-rtdb.firebaseio.com/products');
+    final url = Uri.parse('https://myshop-f4884-default-rtdb.firebaseio.com/products.json');
     final response = await http.post(url,
         body: json.encode(
           {
