@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 
 class Badge extends StatelessWidget {
   const Badge({
+    Key? key,
     required this.child,
     required this.value,
-  });
+  }) : super(key: key);
 
   final Widget child;
   final String value;
@@ -24,14 +25,14 @@ class Badge extends StatelessWidget {
               borderRadius: BorderRadius.circular(10.0),
               color: Theme.of(context).colorScheme.secondary,
             ),
-            constraints: BoxConstraints(
+            constraints: const BoxConstraints(
               minWidth: 16,
               minHeight: 16,
             ),
             child: Text(
               value,
               textAlign: TextAlign.center,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 10,
                 color: Colors.black,
               ),

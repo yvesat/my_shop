@@ -7,11 +7,13 @@ import '../providers/orders.dart';
 class CartScreen extends StatelessWidget {
   static const routeName = '/cart';
 
+  const CartScreen({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     final cart = Provider.of<Cart>(context);
     return Scaffold(
-      appBar: AppBar(title: Text('Your Cart')),
+      appBar: AppBar(title: const Text('Your Cart')),
       body: Column(
         children: <Widget>[
           Card(
@@ -21,18 +23,18 @@ class CartScreen extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  Text('Total', style: TextStyle(fontSize: 20)),
-                  Spacer(),
+                  const Text('Total', style: TextStyle(fontSize: 20)),
+                  const Spacer(),
                   Chip(
-                    label: Text('\$${cart.totalAmount.toStringAsFixed(2)}', style: TextStyle(color: Colors.white)),
+                    label: Text('\$${cart.totalAmount.toStringAsFixed(2)}', style: const TextStyle(color: Colors.white)),
                     backgroundColor: Theme.of(context).colorScheme.primary,
                   ),
                   TextButton(
-                    child: Text('ORDER NOW'),
+                    child: const Text('ORDER NOW'),
                     onPressed: () {
                       var cartItemsList = cart.items.values.toList();
                       bool validOrder = true;
-                      cartItemsList.length > 0 ? Provider.of<Orders>(context, listen: false).addOrder(cartItemsList, cart.totalAmount) : validOrder = false;
+                      cartItemsList.isNotEmpty ? Provider.of<Orders>(context, listen: false).addOrder(cartItemsList, cart.totalAmount) : validOrder = false;
                       cart.clear();
                       showDialog<String>(
                         context: context,
@@ -70,7 +72,7 @@ class CartScreen extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           Expanded(
               child: ListView.builder(
             itemCount: cart.itemCount,

@@ -5,6 +5,8 @@ import '../providers/products_provider.dart';
 class ProductDetailScreen extends StatelessWidget {
   static const routeName = '/product-detail';
 
+  const ProductDetailScreen({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     final productId = ModalRoute.of(context)!.settings.arguments as String;
@@ -18,7 +20,7 @@ class ProductDetailScreen extends StatelessWidget {
         child: Column(
           children: <Widget>[
             Container(
-              margin: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+              margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
               height: 300,
               width: double.infinity,
               child: ClipRRect(
@@ -26,12 +28,12 @@ class ProductDetailScreen extends StatelessWidget {
                 child: Image.network(loadedProduct.imageUrl, fit: BoxFit.cover),
               ),
             ),
-            SizedBox(height: 10),
-            Text('\$ ${loadedProduct.price}', style: TextStyle(color: Colors.grey, fontSize: 20)),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
+            Text('\$ ${loadedProduct.price}', style: const TextStyle(color: Colors.grey, fontSize: 20)),
+            const SizedBox(height: 10),
             Container(
-              margin: EdgeInsets.symmetric(horizontal: 16),
-              child: Text('${loadedProduct.description}', textAlign: TextAlign.center, softWrap: true),
+              margin: const EdgeInsets.symmetric(horizontal: 16),
+              child: Text(loadedProduct.description, textAlign: TextAlign.center, softWrap: true),
             ),
           ],
         ),

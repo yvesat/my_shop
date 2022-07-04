@@ -8,11 +8,12 @@ class UserProductItem extends StatelessWidget {
   final String title;
   final String imageUrl;
 
-  UserProductItem({
+  const UserProductItem({
+    Key? key,
     required this.id,
     required this.title,
     required this.imageUrl,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +23,7 @@ class UserProductItem extends StatelessWidget {
         backgroundColor: Colors.transparent,
       ),
       title: Text(title),
+      // ignore: sized_box_for_whitespace
       trailing: Container(
         width: 100,
         child: Row(

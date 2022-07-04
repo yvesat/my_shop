@@ -6,6 +6,8 @@ import 'package:provider/provider.dart';
 import '../providers/product.dart';
 
 class ProductItem extends StatelessWidget {
+  const ProductItem({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     final product = Provider.of<Product>(context, listen: false);
@@ -27,7 +29,7 @@ class ProductItem extends StatelessWidget {
           backgroundColor: Colors.black54,
           leading: Consumer<Product>(
             builder: (ctx, product, _) => IconButton(
-              icon: product.isFavorite ? FaIcon(FontAwesomeIcons.solidHeart) : FaIcon(FontAwesomeIcons.heart),
+              icon: product.isFavorite ? const FaIcon(FontAwesomeIcons.solidHeart) : const FaIcon(FontAwesomeIcons.heart),
               color: Theme.of(context).colorScheme.secondary,
               onPressed: () {
                 product.toggleFavorite();
@@ -40,8 +42,8 @@ class ProductItem extends StatelessWidget {
                 ScaffoldMessenger.of(context).hideCurrentSnackBar();
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
-                    content: Text('Added item do cart!'),
-                    duration: Duration(seconds: 2),
+                    content: const Text('Added item do cart!'),
+                    duration: const Duration(seconds: 2),
                     action: SnackBarAction(
                       label: 'UNDO',
                       onPressed: () {

@@ -12,13 +12,14 @@ class CartItem extends StatelessWidget {
   final String title;
 
   const CartItem({
+    Key? key,
     required this.id,
     required this.productId,
     required this.imageUrl,
     required this.price,
     required this.quantity,
     required this.title,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +29,7 @@ class CartItem extends StatelessWidget {
       key: ValueKey(id),
       background: Container(
         color: Theme.of(context).errorColor,
-        child: Icon(
+        child: const Icon(
           Icons.delete,
           color: Colors.white,
           size: 40,
@@ -41,6 +42,7 @@ class CartItem extends StatelessWidget {
       onDismissed: (direction) {
         Provider.of<Cart>(context, listen: false).removeItem(productId);
       },
+      // ignore: sized_box_for_whitespace
       child: Container(
         height: 90,
         child: Card(
@@ -59,7 +61,7 @@ class CartItem extends StatelessWidget {
                     subtitle: Row(
                       children: [
                         Text('$quantity x $price'),
-                        Spacer(),
+                        const Spacer(),
                         Text('Total: ${totalPrice.toStringAsFixed(2)}'),
                       ],
                     ),

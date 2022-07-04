@@ -4,7 +4,7 @@ import 'product.dart';
 import 'package:http/http.dart' as http;
 
 class ProductsProvider with ChangeNotifier {
-  List<Product> _items = [
+  final List<Product> _items = [
     Product(
       id: "1",
       title: "Mouse",

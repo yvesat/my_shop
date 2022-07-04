@@ -7,7 +7,7 @@ import 'dart:math';
 class OrderItem extends StatefulWidget {
   final ord.OrderItem order;
 
-  const OrderItem(this.order);
+  const OrderItem(this.order, {Key? key}) : super(key: key);
 
   @override
   State<OrderItem> createState() => _OrderItemState();
@@ -19,7 +19,7 @@ class _OrderItemState extends State<OrderItem> {
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: EdgeInsets.all(10),
+      margin: const EdgeInsets.all(10),
       child: Column(
         children: <Widget>[
           ListTile(
@@ -36,6 +36,7 @@ class _OrderItemState extends State<OrderItem> {
             ),
           ),
           if (_expanded)
+            // ignore: sized_box_for_whitespace
             Container(
               height: min(widget.order.products.length * 20 + 15, 180),
               child: ListView.builder(
@@ -47,11 +48,11 @@ class _OrderItemState extends State<OrderItem> {
                     children: <Widget>[
                       Text(
                         widget.order.products[index].title,
-                        style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                        style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                       ),
                       Text(
                         '${widget.order.products[index].quantity} x ${widget.order.products[index].price}',
-                        style: TextStyle(fontSize: 16, color: Colors.grey, fontWeight: FontWeight.bold),
+                        style: const TextStyle(fontSize: 16, color: Colors.grey, fontWeight: FontWeight.bold),
                       ),
                     ],
                   ),
