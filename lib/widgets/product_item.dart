@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:my_expenses/providers/cart.dart';
-import 'package:my_expenses/screens/product_detail.dart';
+import '../providers/cart.dart';
+import '../screens/product_detail.dart';
 import 'package:provider/provider.dart';
 import '../providers/product.dart';
-import '../providers/cart.dart';
 
 class ProductItem extends StatelessWidget {
   @override

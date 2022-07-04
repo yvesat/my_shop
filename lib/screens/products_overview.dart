@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:my_expenses/providers/cart.dart';
-import 'package:my_expenses/screens/cart_screen.dart';
-import 'package:my_expenses/widgets/badge.dart';
+import '../providers/cart.dart';
+import '../screens/cart_screen.dart';
+import '../widgets/badge.dart';
 import '../widgets/products_grid.dart';
 import 'package:provider/provider.dart';
-import '../providers/cart.dart';
 import './cart_screen.dart';
 import '../widgets/app_drawer.dart';
 

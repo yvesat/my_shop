@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:my_expenses/screens/cart_screen.dart';
-import 'package:my_expenses/screens/user_products_screen.dart';
+import '../screens/cart_screen.dart';
+import '../screens/user_products_screen.dart';
 import 'package:provider/provider.dart';
 
 import './screens/products_overview.dart';

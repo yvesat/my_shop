@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_expenses/providers/cart.dart';
-import 'package:uuid/uuid.dart';
+import '../providers/cart.dart';
 
 class OrderItem {
   final String id;
@@ -24,11 +23,10 @@ class Orders with ChangeNotifier {
   }
 
   void addOrder(List<CartItem> cartProducts, double total) {
-    var uuid = Uuid();
     _orders.insert(
       0,
       OrderItem(
-        id: uuid.v1(),
+        id: DateTime.now().toString(),
         amount: total,
         dateTime: DateTime.now(),
         products: cartProducts,
