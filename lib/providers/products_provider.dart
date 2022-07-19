@@ -104,7 +104,7 @@ class ProductsProvider with ChangeNotifier {
 
   Future<void> deleteProduct(String id) async {
     try {
-      final url = Uri.parse('https://myshop-f4884-default-rtdb.firebaseio.com/products/$id.');
+      final url = Uri.parse('https://myshop-f4884-default-rtdb.firebaseio.com/products/$id.json');
       final response = await http.delete(url);
       if (response.statusCode < 400) {
         _items.removeWhere((prod) => prod.id == id);
