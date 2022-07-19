@@ -12,11 +12,9 @@ import './providers/products_provider.dart';
 import './providers/cart.dart';
 import './providers/orders.dart';
 
-void main() => runApp(const MyApp());
+void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return MultiProvider(

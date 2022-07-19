@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'product.dart';
 import 'package:http/http.dart' as http;
+import '../models/http_exception.dart';
 
 class ProductsProvider with ChangeNotifier {
   List<Product> _items = [];
@@ -75,16 +76,42 @@ class ProductsProvider with ChangeNotifier {
     }
   }
 
-  void updateProduct(String id, Product product) {
+  Future<void> updateProduct(String id, Product product) async {
     final prodIndex = _items.lastIndexWhere((prod) => prod.id == id);
     if (prodIndex >= 0) {
-      _items[prodIndex] = product;
-      notifyListeners();
+      try {
+        final url = Uri.parse('https://myshop-f4884-default-rtdb.firebaseio.com/products/$id.json');
+        // final response =
+        await http.patch(
+          url,
+          body: json.encode(
+            {
+              'title': product.title,
+              'description': product.description,
+              'imageUrl': product.imageUrl,
+              'price': product.price,
+            },
+          ),
+        );
+        _items[prodIndex] = product;
+        notifyListeners();
+      } catch (e) {
+        rethrow;
+        //todo: add error handling
+      }
     }
   }
 
-  void deleteProduct(String id) {
-    _items.removeWhere((prod) => prod.id == id);
-    notifyListeners();
+  Future<void> deleteProduct(String id) async {
+    try {
+      final url = Uri.parse('https://myshop-f4884-default-rtdb.firebaseio.com/products/$id.');
+      final response = await http.delete(url);
+      if (response.statusCode < 400) {
+        _items.removeWhere((prod) => prod.id == id);
+        notifyListeners();
+      }
+    } catch (e) {
+      throw HttpException('Could not delete product.');
+    }
   }
 }

@@ -12,10 +12,13 @@ class UserProductsScreen extends StatelessWidget {
     Provider.of<ProductsProvider>(context, listen: false).fetchAndSetProducts();
   }
 
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
   @override
   Widget build(BuildContext context) {
     final productsData = Provider.of<ProductsProvider>(context);
     return Scaffold(
+      key: _scaffoldKey,
       appBar: AppBar(
         title: const Text('Your Products'),
         actions: <Widget>[
