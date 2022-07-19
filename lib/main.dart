@@ -38,11 +38,11 @@ class MyApp extends StatelessWidget {
         ),
         home: const ProductsOverViewScreen(),
         routes: {
-          ProductDetailScreen.routeName: (context) => const ProductDetailScreen(),
-          CartScreen.routeName: (context) => const CartScreen(),
-          OrderScreen.routeName: (context) => const OrderScreen(),
-          UserProductsScreen.routeName: (context) => const UserProductsScreen(),
-          EditProductScreen.routeName: (context) => const EditProductScreen(),
+          ProductDetailScreen.routeName: (context) => ProductDetailScreen(),
+          CartScreen.routeName: (context) => CartScreen(),
+          OrderScreen.routeName: (context) => OrderScreen(),
+          UserProductsScreen.routeName: (context) => UserProductsScreen(),
+          EditProductScreen.routeName: (context) => EditProductScreen(),
         },
       ),
     );
@@ -64,3 +64,35 @@ class MyHomePage extends StatelessWidget {
     );
   }
 }
+
+
+
+
+    // Product(
+    //   id: "1",
+    //   title: "Mouse",
+    //   description: "Mouse for computers",
+    //   price: 99.99,
+    //   imageUrl: "https://cdn.pixabay.com/photo/2017/05/24/21/33/workplace-2341642__340.jpg",
+    // ),
+    // Product(
+    //   id: "2",
+    //   title: "Keyboard",
+    //   description: "Keyboard for computers",
+    //   price: 199.99,
+    //   imageUrl: "https://cdn.pixabay.com/photo/2015/12/15/19/35/keyboard-1094833__340.jpg",
+    // ),
+    // Product(
+    //   id: "3",
+    //   title: "iPad",
+    //   description: "Last generation iPad",
+    //   price: 499.99,
+    //   imageUrl: "https://cdn.pixabay.com/photo/2019/10/07/10/40/ipad-4532326_960_720.jpg",
+    // ),
+    // Product(
+    //   id: "4",
+    //   title: "MacBook",
+    //   description: "Last generation MacBook",
+    //   price: 1999.99,
+    //   imageUrl: "https://cdn.pixabay.com/photo/2016/10/11/09/26/office-1730940__340.jpg",
+    // ),

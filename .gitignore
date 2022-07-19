@@ -19,3 +19,9 @@ doc/api/
 generated_plugin_registrant.cc
 generated_plugin_registrant.h
 generated_plugins.cmake
+.dart_tool/package_config.json
+.dart_tool/package_config_subset
+.packages
+windows/flutter/generated_plugin_registrant.cc
+windows/flutter/generated_plugin_registrant.h
+windows/flutter/generated_plugins.cmake

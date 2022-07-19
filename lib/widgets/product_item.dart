@@ -56,7 +56,7 @@ class ProductItem extends StatelessWidget {
             child: Consumer<Product>(
               builder: (ctx, product, _) => InkWell(
                 child: ClipRRect(
-                  borderRadius: BorderRadius.only(bottomLeft: Radius.circular(10)),
+                  borderRadius: const BorderRadius.only(bottomLeft: Radius.circular(10)),
                   child: Container(
                     color: Colors.black54,
                     padding: const EdgeInsets.all(8),
