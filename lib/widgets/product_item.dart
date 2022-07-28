@@ -63,8 +63,17 @@ class ProductItem extends StatelessWidget {
                     child: FaIcon(product.isFavorite ? FontAwesomeIcons.solidHeart : FontAwesomeIcons.heart, size: 16, color: Colors.orangeAccent),
                   ),
                 ),
-                onTap: () {
-                  product.toggleFavorite();
+                onTap: () async {
+                  bool toggledFavorite = await product.toggleFavorite();
+                  if (!toggledFavorite) {
+                    ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('Failed updating favorite status!', textAlign: TextAlign.center),
+                        duration: Duration(seconds: 4),
+                      ),
+                    );
+                  }
                 },
               ),
             ),
