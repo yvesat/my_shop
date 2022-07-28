@@ -38,7 +38,7 @@ class _OrderItemState extends State<OrderItem> {
           if (_expanded)
             // ignore: sized_box_for_whitespace
             Container(
-              height: min(widget.order.products.length * 20 + 15, 180),
+              height: min(widget.order.products.length * 25 + 15, 150),
               child: ListView.builder(
                 itemCount: widget.order.products.length,
                 itemBuilder: (ctx, index) => Padding(
