@@ -39,24 +39,60 @@ class UserProductItem extends StatelessWidget {
             ),
             IconButton(
               onPressed: () async {
-                try {
-                  Provider.of<ProductsProvider>(context, listen: false).deleteProduct(id);
-                } catch (e) {
-                  // ScaffoldMessenger.of(context).hideCurrentSnackBar();
-
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: const Text('Deleting failed!'),
-                      duration: const Duration(seconds: 2),
-                      action: SnackBarAction(
-                        label: 'UNDO',
-                        onPressed: () {
-                          ScaffoldMessenger.of(context).hideCurrentSnackBar();
-                        },
-                      ),
+                showDialog<String>(
+                  context: context,
+                  builder: (BuildContext context) => AlertDialog(
+                    title: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: const [
+                        FaIcon(
+                          FontAwesomeIcons.triangleExclamation,
+                          color: Colors.amber,
+                        ),
+                        SizedBox(height: 12),
+                        Text(
+                          'This action cannot be undone',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                        ),
+                      ],
                     ),
-                  );
-                }
+                    content: const Text(
+                      'Are you sure you want to delete this product?',
+                      textAlign: TextAlign.center,
+                    ),
+                    actions: <Widget>[
+                      Center(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            TextButton(
+                              onPressed: () async {
+                                var deletedProduct = await Provider.of<ProductsProvider>(context, listen: false).deleteProduct(id);
+                                if (!deletedProduct) {
+                                  ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(
+                                      content: Text('Deleting failed!', textAlign: TextAlign.center),
+                                      duration: Duration(seconds: 4),
+                                    ),
+                                  );
+                                }
+                                Navigator.pop(context);
+                              },
+                              child: const Text('Yes'),
+                            ),
+                            TextButton(
+                              onPressed: () => Navigator.pop(context),
+                              child: const Text('No'),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                );
               },
               icon: FaIcon(
                 FontAwesomeIcons.trashCan,

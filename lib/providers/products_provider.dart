@@ -42,7 +42,6 @@ class ProductsProvider with ChangeNotifier {
       _items = loadedProducts;
       notifyListeners();
     } catch (e) {
-      rethrow;
       //todo: add error handling
     }
   }
@@ -71,9 +70,7 @@ class ProductsProvider with ChangeNotifier {
       );
       _items.add(newProduct);
       notifyListeners();
-    } catch (e) {
-      rethrow;
-    }
+    } catch (e) {}
   }
 
   Future<void> updateProduct(String id, Product product) async {
@@ -96,22 +93,22 @@ class ProductsProvider with ChangeNotifier {
         _items[prodIndex] = product;
         notifyListeners();
       } catch (e) {
-        rethrow;
         //todo: add error handling
       }
     }
   }
 
-  Future<void> deleteProduct(String id) async {
-    try {
-      final url = Uri.parse('https://myshop-f4884-default-rtdb.firebaseio.com/products/$id.json');
-      final response = await http.delete(url);
-      if (response.statusCode < 400) {
-        _items.removeWhere((prod) => prod.id == id);
-        notifyListeners();
-      }
-    } catch (e) {
-      throw HttpException('Could not delete product.');
+  Future<bool> deleteProduct(String id) async {
+    final url = Uri.parse('https://myshop-f4884-default-rtdb.firebaseio.com/products/$id.json');
+    final response = await http.delete(url);
+    if (response.statusCode < 400) {
+      _items.removeWhere((prod) => prod.id == id);
+      notifyListeners();
+      return true;
     }
+    return false;
   }
 }
+
+
+//https://cdn.pixabay.com/photo/2017/02/16/13/42/box-2071537_960_720.png
